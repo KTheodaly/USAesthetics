@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>USAestheics</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+    <header>the preamble to the US Constitution...</header>
+    <br>
+    <p>"We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic
+        Tranquility, provide for the common defence, promote the general Welfare, and secure the Blessings of Liberty to
+        ourselves and our Posterity, do ordain and establish this Constitution for the United States of America."</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                How many words start with "t"?
+            </div>
+            <div class="col-md">
+                <!-- included an event for this button to run the "t" function and display the result in an onclick -->
+                <button id="butt1" onclick="findT(preamble)">find out!</button>
+            </div>
+            <div class="col-md">
+                <div id="result1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                How many words end with "e"?
+            </div>
+            <div class="col-md">
+                <!-- included a similar event just substituted the name of the second function for the second button -->
+                <button id="butt2" onclick="findE(preamble)">find out!</button>
+            </div>
+            <div class="col-md">
+                <div id="result2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                How many words fit both categories?
+            </div>
+            <div class="col-md">
+                <!-- same for the third button -->
+                <button id="butt3" onclick="findBoth(preamble)">find out!</button>
+            </div>
+            <div class="col-md">
+                <div id="result3"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- the Javascript starts below -->
+    <script>
+        //take the text of the preable and made it a variable
+        var preText =
+            "We the People of the United States in Order to form a more perfect Union establish Justice insure domestic Tranquility provide for the common defence promote the general Welfare and secure the Blessings of Liberty to ourselves and our Posterity do ordain and establish this Constitution for the United States of America";
+
+        //using string split to create an array called preamble whose values are each seperate word (it splits the text at the space because that's where I will indicate)
+        var preamble = preText.split(" ");
+
+        //here's some variables for the tally counts
+
+        var tCount = 0;
+        var eCount = 0;
+        var bothCount = 0;
+
+        //they start at 0 because I'll write an increment for the loop to increase them by one when conditions are met
+
+
+
+        //now I want a for loop to pass through each word and check if it starts with "t"
+
+        function findT() {
+
+            var tCount = 0;
+            for (var i = 0; i < preamble.length; i++) {
+                
+                if (preamble[i].toLowerCase().charAt(0) === "t") {
+                    //I'm chaining lowercase in here to catch capital T's as well
+                    console.log("There are" + " " + tCount++ + " " + "words that start with 'T'");
+                     //as you can see in the console, it logs instances of "t" words as it loops through the array
+
+                    document.getElementById("result1").innerHTML = tCount;
+                }
+
+            }
+        };
+
+        //function checking for ending with "E"
+
+        function findE() {
+            var eCount = 0;
+            for (var i = 0; i < preamble.length; i++) {
+                
+                if (preamble[i].charAt(preamble[i].length-1) === "e") {
+                    //I'm stealing the same function but instead of looking for the character at index 0, I'm looking for the string length minus one to target the last characters' changing indexes
+                    console.log("There are" + " " + eCount++ + " " + "words that end with 'E'");
+                     //as you can see in the console, it logs instances of "e" words as it loops through the array
+
+                    document.getElementById("result2").innerHTML = eCount;
+                }
+
+            }
+        };
+
+        //function checking for both conditions
+
+        function findBoth() {
+            var bothCount = 0;
+            for (var i = 0; i < preamble.length; i++) {
+                
+                if (preamble[i].charAt(preamble[i].length-1) === "e" && preamble[i].toLowerCase().charAt(0) === "t") {
+                    //this function is just a combination of the first two, using a double && means both conditions must be true, whereas pipes would be an either or
+                    console.log("There are" + " " + bothCount++ + " " + "words that fit both conditions");
+                    //also logs in the console each time it finds a qualifying word
+
+                    document.getElementById("result3").innerHTML = bothCount;
+                }
+
+            }
+        };
+        
+       
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
